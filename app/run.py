@@ -11,8 +11,9 @@ from m2r import convert as rst
 from fuzzywuzzy import fuzz
 import unicodedata
 
-# from bs4 import BeautifulSoup
+# getting snippets...
 
+# from bs4 import BeautifulSoup
 # html = markdown(some_html_string)
 # text = ''.join(BeautifulSoup(html).findAll(text=True))
 
@@ -20,8 +21,8 @@ def list_folders(path):
     # get all folders
     folders = [x for x in os.listdir(path) if os.path.isdir(join(path, x))]
 
-    #remove the src
     # remove hidden folders
+    # remove the src
     folders = list(filter(lambda x: True if x[0] != "." else False, folders))
     folders = list(filter(lambda x: True if x != "src" else False, folders))
 
@@ -31,7 +32,7 @@ def list_files(path):
     # get all folders
     files = [x for x in os.listdir(path) if os.path.isfile(join(path, x))]
 
-    # remove hidden folders
+    # remove hidden files
     files = list(filter(lambda x: True if x[0] != "." else False, files))
 
     return files
@@ -94,14 +95,6 @@ def find_difference(base_path, addition):
     print("\n\nbase: '{}'\nadd: '{}'\ncommon: '{}'\nrelative: '{}'\n\n".format(base_path, addition, common, relative))
     return "/index" if relative == "" else relative
 
-def get_sections(path):
-    """
-    path: path-like object containing a directory
-    returns: all the folders inside that path
-    """
-    folders = list_folders(path)
-    return folders
-
 def render_folder(env, sections, path, full_path):
     files = list_files(full_path)
     folders = list_folders(full_path)
@@ -161,7 +154,7 @@ def parse(path_list, env):
     base_path = fuzz_path(path, folders)
     full_path = fuzz_files(base_path, end)
 
-    sections = get_sections(base_path)
+    sections = list_folders(base_path)
     relatives = list(map(lambda x: find_difference(path, join(base_path, x)), sections))
     sections = list(zip(relatives, sections))
 
