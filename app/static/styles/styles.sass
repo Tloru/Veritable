@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|PT+Sans+Caption|PT+Sans:400,400i,700,700i|PT+Serif:700')
+
+$h:  "PT Serif", serif
+$p:  "PT Sans", sans-serif
+$bq: "PT Sans Caption", sans-serif
+$c:  "PT mono", monospace
+
+// dark
+
+$pop: #f58
+$main: #BFC
+
+$icon: #FFE
+$fill: #112
+
+// light
+
+// $pop:  #5DCF7A
+// $main: #F58
+//
+// $icon: #112
+// $fill: #FFE
+
+// alternate
+
+// $pop: #00d1cd
+// $main: #f30067
+//
+// $icon: #444444
+// $fill: #eaeaea
+
+// alternate dark
+
+// $pop: #f30067
+// $main: #00d1cd
+
+// $icon: #eaeaea
+// $fill: #444444
+
+// tonsky
+
+
+
+// styles
+
+$gap:   60px
+$chunk: 15px
+$sep:   5px
+
+$fs: 18px
+$lh: 28px
+
+$hair: 2px
+$opacity: 0.9
+$width: 800px
+
+*
+    box-sizing: border-box
+
+// demo block:
+//
+// block
+//     typography
+//     coloring
+//     spacing
+//
+//     other
+
+// main
+
+body
+    font-family: $p
+    font-size: $fs
+
+    background-color: $fill
+    color: $icon
+
+    margin: 0
+    padding: 0
+
+.content
+    max-width: $width
+    margin-left: auto
+    margin-right: auto
+    margin-top: $gap
+    margin-bottom: $gap
+    padding-left: $gap
+    padding-right: $gap
+
+.navbar li
+    display: inline-block
+    margin-right: $gap
+
+.footer
+    background-color: $icon
+    padding-top: $gap
+    padding-bottom: $gap
+
+    p
+        color: $fill
+
+    h1
+        color: $pop
+
+// headings
+
+h1, h2, h3, h4, h5, h6
+    font-family: $h
+    color: $main
+    margin-bottom: $chunk
+    padding: 0
+
+h1
+    font-size: $gap / 1
+    margin-top: $gap
+
+h2
+    font-size: $gap / 2
+    margin-bottom: $chunk
+
+h3
+    font-size: $gap / 3
+    margin-bottom: $chunk
+
+h4
+    font-size: $gap / 4
+    margin-bottom: $chunk
+
+h5
+    font-size: $gap / 5
+    margin-bottom: $chunk
+
+h6
+    font-size: $gap / 6
+    margin-bottom: $chunk
+
+// body text
+
+p, blockquote, pre, ul
+    font-size: $fs
+    line-height: $lh
+    margin-bottom: $chunk
+    padding: 0
+
+p
+    font-family: $p
+    color: $icon
+
+blockquote
+    font-family: $bq
+    //font-style: italic
+
+    color: $icon
+    opacity: $opacity
+
+    margin-left: 0
+    padding-left: $chunk
+
+    border-left: $hair solid $icon
+
+    p
+        font-family: inherit
+
+pre
+    background-color: $icon
+    background-color: transparentize($icon, $opacity)
+
+    padding: $chunk
+    border-radius: $sep
+    white-space: pre-wrap
+
+
+    code
+        background-color: transparent
+
+// standalone text
+
+a, code, li
+    margin: 0
+    padding: 0
+
+a
+    color: inherit
+
+    text-decoration: None
+    border-bottom: $hair solid $pop
+
+code
+    font-family: $c
+    color: $icon
+    background-color: transparentize($icon, $opacity)
+    padding: $sep
+    border-radius: $sep
+
+li
+    font-size: inherit
+
+// images
+img
+    width: 100%
+
+// tables
+
+table
+    width: 100%
+
+tr
+    border: $hair solid $icon

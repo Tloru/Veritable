@@ -4,7 +4,7 @@ Congrats!
 Now, what do you do from here?.
 Don't worry, we've got your back.
 
-![A Cute Doggo](http://media.boingboing.net/wp-content/uploads/2016/10/doggo.jpg)
+![A Cute Doggo](src/doggo.jpg)
 > An image of a cute doggo.
 
 ## Getting Started

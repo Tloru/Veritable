@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Mono|PT+Sans+Caption|PT+Sans:400,400i,700,700i|PT+Serif:700");
+* {
+  box-sizing: border-box; }
+
+body {
+  font-family: "PT Sans", sans-serif;
+  font-size: 18px;
+  background-color: #112;
+  color: #FFE;
+  margin: 0;
+  padding: 0; }
+
+.content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding-left: 60px;
+  padding-right: 60px; }
+
+.navbar li {
+  display: inline-block;
+  margin-right: 60px; }
+
+.footer {
+  background-color: #FFE;
+  padding-top: 60px;
+  padding-bottom: 60px; }
+  .footer p {
+    color: #112; }
+  .footer h1 {
+    color: #f58; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "PT Serif", serif;
+  color: #BFC;
+  margin-bottom: 15px;
+  padding: 0; }
+
+h1 {
+  font-size: 60px;
+  margin-top: 60px; }
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 15px; }
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 15px; }
+
+h4 {
+  font-size: 15px;
+  margin-bottom: 15px; }
+
+h5 {
+  font-size: 12px;
+  margin-bottom: 15px; }
+
+h6 {
+  font-size: 10px;
+  margin-bottom: 15px; }
+
+p, blockquote, pre, ul {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 15px;
+  padding: 0; }
+
+p {
+  font-family: "PT Sans", sans-serif;
+  color: #FFE; }
+
+blockquote {
+  font-family: "PT Sans Caption", sans-serif;
+  color: #FFE;
+  opacity: 0.9;
+  margin-left: 0;
+  padding-left: 15px;
+  border-left: 2px solid #FFE; }
+  blockquote p {
+    font-family: inherit; }
+
+pre {
+  background-color: #FFE;
+  background-color: rgba(255, 255, 238, 0.1);
+  padding: 15px;
+  border-radius: 5px;
+  white-space: pre-wrap; }
+  pre code {
+    background-color: transparent; }
+
+a, code, li {
+  margin: 0;
+  padding: 0; }
+
+a {
+  color: inherit;
+  text-decoration: None;
+  border-bottom: 2px solid #f58; }
+
+code {
+  font-family: "PT mono", monospace;
+  color: #FFE;
+  background-color: rgba(255, 255, 238, 0.1);
+  padding: 5px;
+  border-radius: 5px; }
+
+li {
+  font-size: inherit; }
+
+img {
+  width: 100%; }
+
+table {
+  width: 100%; }
+
+tr {
+  border: 2px solid #FFE; }

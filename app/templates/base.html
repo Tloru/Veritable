@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ name }}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="content">
+                <h1><a href="/">{{ name }}</a></h1>
+                <ul>
+                {% for href, section in sections %}
+                    <li><a href="{{ href }}">{{ section }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="footer">
+            <div class="content">
+                <h1><a href="/">{{ name }}</a></h1>
+                <p>{{ description }}</p>
+            </div>
+        </dov>
+    </body>
+</html>

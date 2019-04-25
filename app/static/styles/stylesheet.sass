@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|PT+Sans+Caption|PT+Sans:400,400i,700,700i|PT+Serif:700')
+
+//colors
+$bg: #FFF
+$text: #112
+$high: #35A
+$code: #FEE
+$code-bg: #112
+
+// typography
+
+$heading: "PT Serif", serif
+$body: "PT Sans", sans-serif
+$caption: "PT Caption", sans-serif
+$code-font: "PT Mono", monospace
+
+$h1: 60px
+$h2: 50px
+$h3: 40px
+$h4: 30px
+$h5: 20px
+$h6: 10px
+
+$p: 16px
+$lh: 32px
+
+$sep: 120px
+$med-sep: 60px
+$small-sep: 30px
+
+// ui
+
+$content-width: 600px
+$opacity: 0.75
+$rounding: 5px
+
+// general
+
+*
+    box-sizing: border-box
+
+body
+    background-color: $bg
+    font-family: $body
+    color: $text
+    margin: 0
+    padding: 0
+
+.content
+    max-width: $content-width
+    margin-left: auto
+    margin-right: auto
+    padding-left: $small-sep
+    padding-right: $small-sep
+
+// header and footer
+
+h1, h2, h3, h4, h5, h6, p, pre, blockquote
+    display: block
+    word-wrap: break-word
+    font-family: $heading
+
+footer
+    background-color: $code-bg
+    color: $code
+    height: 100vh
+    margin-top: $sep
+    display: flex
+    justify-content: center
+    align-items: center
+
+// content styling
+
+h1
+    font-size: $h1
+
+h2
+    font-size: $h2
+
+h3
+    font-size: $h3
+
+h4
+    font-size: $h4
+
+h5
+    font-size: $h5
+
+h6
+    font-size: $h6
+
+h1, h2, h3, h4, h5, h6
+    margin-top: $sep
+    margin-bottom: $small-sep
+    font-weight: 700
+    color: $high
+
+a, p, pre
+    margin-top: $small-sep
+    margin-bottom: $small-sep
+
+a, pre, p, li, blockquote
+    font-size: $p
+    line-height: $lh
+
+a
+    border-bottom: 2px solid $high
+    text-decoration: none
+    font-size: inherit
+    color: $high
+
+img
+    width: 100%
+    margin-top: 0
+    margin-bottom: 0
+
+blockquote
+    opacity: $opacity
+    font-style: italic
+    border-left: 2px solid $text
+    padding-left: $small-sep
+    margin-left: 0px
+
+pre
+    background-color: $code-bg
+    // background-color: transparentize($code-bg, $opacity)
+    color: $code
+    padding: $small-sep
+    border-radius: $rounding
+    white-space: pre-wrap
+
+    code
+        background-color: transparent
+
+code
+    background-color: $code-bg
+    color: $code
+    background-color: $code-bg, $opacity
+    opacity: $opacity
+    margin: $rounding
+    padding: $rounding
+    border-radius: $rounding

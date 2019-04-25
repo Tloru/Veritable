@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ section }}</h1>
+    {% for href, page, snippet in pages: %}
+        <p>
+            <a href="{{ href }}">{{ page }}</a>
+            {{ snippet }}
+        </p>
+    {% endfor %}
+{% endblock %}
