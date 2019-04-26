@@ -15,11 +15,11 @@ $c:  "PT mono", monospace
 
 // light
 
-// $pop:  #5DCF7A
-// $main: #F58
-//
-// $icon: #112
-// $fill: #FFE
+$pop:  #5DCF7A
+$main: #F58
+
+$icon: #112
+$fill: #FFE
 
 // alternate
 
@@ -33,17 +33,25 @@ $c:  "PT mono", monospace
 
 // $pop: #f30067
 // $main: #00d1cd
-
+//
 // $icon: #eaeaea
 // $fill: #444444
 
 // tonsky
 
-$pop: #444
-$main: #222
+// $pop: #444
+// $main: #222
+//
+// $icon: #222
+// $fill: #fd0
 
-$icon: #222
-$fill: #dd0
+// tonsky dark
+
+// $pop: #222
+// $main: #444
+//
+// $icon: #fd0
+// $fill: #222
 
 // styles
 
@@ -187,7 +195,19 @@ a
     color: inherit
 
     text-decoration: None
-    border-bottom: $hair solid $pop
+    // border-bottom: $hair solid $pop
+
+    background-image: linear-gradient(90deg, $pop 0%, $pop 100%)
+    background-repeat: no-repeat
+    background-size: 100% 2px
+    background-position: 0px 100%
+    transition: background-size 0.3s ease, color 0.5s ease
+
+    &:hover, &:active, &:focus
+        border-color: $pop
+        color: $icon
+        background-size: 100% 100%
+
 
 code
     font-family: $c
