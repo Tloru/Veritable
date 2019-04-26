@@ -81,7 +81,7 @@ def fuzz_files(path, end):
             end = folder
             folder = folders[folder]
 
-        if len(folders) != 0 and len(folders) != 0:
+        if len(folders) != 0 and len(files) != 0:
             score, end = max([(file_score, file), (folder_score, folder)], key=lambda x: x[0])
 
         # make sure url isn't too far off from expected file
@@ -93,7 +93,7 @@ def find_difference(base_path, addition):
     common = os.path.commonpath([base_path, addition])
     relative = addition[len(common):]
     print("\n\nbase: '{}'\nadd: '{}'\ncommon: '{}'\nrelative: '{}'\n\n".format(base_path, addition, common, relative))
-    return "/index" if relative == "" else relative
+    return "/" if relative == "" else relative
 
 def render_folder(env, sections, path, full_path):
     files = list_files(full_path)

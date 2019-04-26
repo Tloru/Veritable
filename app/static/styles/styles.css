@@ -5,8 +5,8 @@
 body {
   font-family: "PT Sans", sans-serif;
   font-size: 18px;
-  background-color: #112;
-  color: #FFE;
+  background-color: #dd0;
+  color: #222;
   margin: 0;
   padding: 0; }
 
@@ -24,17 +24,17 @@ body {
   margin-right: 60px; }
 
 .footer {
-  background-color: #FFE;
+  background-color: #222;
   padding-top: 60px;
   padding-bottom: 60px; }
   .footer p {
-    color: #112; }
+    color: #dd0; }
   .footer h1 {
-    color: #f58; }
+    color: #444; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "PT Serif", serif;
-  color: #BFC;
+  color: #222;
   margin-bottom: 15px;
   padding: 0; }
 
@@ -70,21 +70,21 @@ p, blockquote, pre, ul {
 
 p {
   font-family: "PT Sans", sans-serif;
-  color: #FFE; }
+  color: #222; }
 
 blockquote {
   font-family: "PT Sans Caption", sans-serif;
-  color: #FFE;
+  color: #222;
   opacity: 0.9;
   margin-left: 0;
   padding-left: 15px;
-  border-left: 2px solid #FFE; }
+  border-left: 2px solid #222; }
   blockquote p {
     font-family: inherit; }
 
 pre {
-  background-color: #FFE;
-  background-color: rgba(255, 255, 238, 0.1);
+  background-color: #222;
+  background-color: rgba(34, 34, 34, 0.1);
   padding: 15px;
   border-radius: 5px;
   white-space: pre-wrap; }
@@ -98,12 +98,12 @@ a, code, li {
 a {
   color: inherit;
   text-decoration: None;
-  border-bottom: 2px solid #f58; }
+  border-bottom: 2px solid #444; }
 
 code {
   font-family: "PT mono", monospace;
-  color: #FFE;
-  background-color: rgba(255, 255, 238, 0.1);
+  color: #222;
+  background-color: rgba(34, 34, 34, 0.1);
   padding: 5px;
   border-radius: 5px; }
 
@@ -117,4 +117,4 @@ table {
   width: 100%; }
 
 tr {
-  border: 2px solid #FFE; }
+  border: 2px solid #222; }

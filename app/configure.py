@@ -6,7 +6,7 @@ def join(*args):
     path = args[0]
     for arg in args[1:]:
         path = os.path.join(path, arg)
-    return path    
+    return path
 
 def get_path(path, correct_path):
     while True:
@@ -19,7 +19,7 @@ def get_path(path, correct_path):
 def get_veritable_path():
     veritable_path = join(os.getcwd(), __file__)
     def correct_path(path):
-        return os.path.split(path)[1] == "veritable"
+        return os.path.split(path)[1].lower() == "veritable"
     return get_path(veritable_path, correct_path)
 
 def get_project_path():
