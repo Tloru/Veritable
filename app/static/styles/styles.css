@@ -5,8 +5,8 @@
 body {
   font-family: "PT Sans", sans-serif;
   font-size: 18px;
-  background-color: #FFE;
-  color: #112;
+  background-color: #112;
+  color: #FFE;
   margin: 0;
   padding: 0; }
 
@@ -16,25 +16,27 @@ body {
   margin-right: auto;
   margin-top: 60px;
   margin-bottom: 60px;
-  padding-left: 60px;
-  padding-right: 60px; }
+  padding-left: 15px;
+  padding-right: 15px; }
 
 .navbar li {
+  padding-right: 15px;
   display: inline-block;
-  margin-right: 60px; }
+  margin-right: 0;
+  margin-left: 0; }
 
 .footer {
-  background-color: #112;
+  background-color: #FFE;
   padding-top: 60px;
   padding-bottom: 60px; }
   .footer p {
-    color: #FFE; }
+    color: #112; }
   .footer h1 {
-    color: #5DCF7A; }
+    color: #f58; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "PT Serif", serif;
-  color: #F58;
+  color: #BFC;
   margin-bottom: 15px;
   padding: 0; }
 
@@ -70,26 +72,27 @@ p, blockquote, pre, ul {
 
 p {
   font-family: "PT Sans", sans-serif;
-  color: #112; }
+  color: #FFE; }
 
 blockquote {
   font-family: "PT Sans Caption", sans-serif;
-  color: #112;
-  opacity: 0.9;
+  color: #FFE;
+  opacity: 0.8;
   margin-left: 0;
   padding-left: 15px;
-  border-left: 2px solid #112; }
+  border-left: 2px solid #FFE; }
   blockquote p {
     font-family: inherit; }
 
 pre {
-  background-color: #112;
-  background-color: rgba(17, 17, 34, 0.1);
+  background-color: #FFE;
+  background-color: rgba(255, 255, 238, 0.2);
   padding: 15px;
   border-radius: 5px;
   white-space: pre-wrap; }
   pre code {
-    background-color: transparent; }
+    background-color: transparent;
+    padding: 0; }
 
 a, code, li {
   margin: 0;
@@ -98,25 +101,26 @@ a, code, li {
 a {
   color: inherit;
   text-decoration: None;
-  background-image: linear-gradient(90deg, #5DCF7A 0%, #5DCF7A 100%);
+  border-bottom: 2px solid #f58;
+  background-image: linear-gradient(0deg, #f58 0%, #f58 100%);
   background-repeat: no-repeat;
-  background-size: 100% 2px;
-  background-position: 0px 100%;
-  transition: background-size 0.3s ease, color 0.5s ease; }
+  background-size: 100% 0;
+  background-position: 0 100%;
+  transition: background-size 0.2s ease, color 0.2s ease; }
   a:hover, a:active, a:focus {
-    border-color: #5DCF7A;
-    color: #112;
+    color: #FFE;
     background-size: 100% 100%; }
 
 code {
   font-family: "PT mono", monospace;
-  color: #112;
-  background-color: rgba(17, 17, 34, 0.1);
+  color: #FFE;
+  background-color: rgba(255, 255, 238, 0.2);
   padding: 5px;
   border-radius: 5px; }
 
 li {
-  font-size: inherit; }
+  font-size: inherit;
+  margin-left: 15px; }
 
 img {
   width: 100%; }
@@ -125,4 +129,4 @@ table {
   width: 100%; }
 
 tr {
-  border: 2px solid #112; }
+  border: 2px solid #FFE; }

@@ -1,0 +1,6 @@
+# This file is a .gitignore style file for hiding directories from veritable
+# right now, all directories/files that start with a '.' are hidden.
+
+.*
+src/
+!src/*

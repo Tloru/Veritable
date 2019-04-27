@@ -2,6 +2,8 @@ from . import *
 
 import os
 
+from gitignore_parser import parse_gitignore as ignore
+
 def join(*args):
     path = args[0]
     for arg in args[1:]:
@@ -35,6 +37,11 @@ class Env:
         self.name = self.get_config("NAME")
         self.author = self.get_config("AUTHOR")
         self.description = self.get_config("DESCRIPTION")
+
+        if os.path.isfile(join(self.project_path, ".veritableignore")):
+            self.vignore = ignore(join(self.project_path, ".veritableignore"))
+        else:
+            self.vignore = lambda x: True if x[0] != "." else False
 
     def get_config(self, file):
         with open(join(self.project_path, ".veritable", file), "r") as f:

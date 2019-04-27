@@ -7,19 +7,19 @@ $c:  "PT mono", monospace
 
 // dark
 
-// $pop: #f58
-// $main: #BFC
-//
-// $icon: #FFE
-// $fill: #112
+$pop: #f58
+$main: #BFC
+
+$icon: #FFE
+$fill: #112
 
 // light
 
-$pop:  #5DCF7A
-$main: #F58
-
-$icon: #112
-$fill: #FFE
+// $pop:  #5DCF7A
+// $main: #F58
+//
+// $icon: #112
+// $fill: #FFE
 
 // alternate
 
@@ -39,16 +39,16 @@ $fill: #FFE
 
 // tonsky
 
-// $pop: #444
-// $main: #222
+// $pop: #db0
+// $main: #2AB
 //
 // $icon: #222
 // $fill: #fd0
 
 // tonsky dark
 
-// $pop: #222
-// $main: #444
+// $pop: #2AB
+// $main: #db0
 //
 // $icon: #fd0
 // $fill: #222
@@ -63,7 +63,7 @@ $fs: 18px
 $lh: 28px
 
 $hair: 2px
-$opacity: 0.9
+$opacity: 0.8
 $width: 800px
 
 *
@@ -96,12 +96,15 @@ body
     margin-right: auto
     margin-top: $gap
     margin-bottom: $gap
-    padding-left: $gap
-    padding-right: $gap
+    padding-left: $chunk
+    padding-right: $chunk
 
 .navbar li
+    padding-right: $chunk
     display: inline-block
-    margin-right: $gap
+    margin-right: 0
+    margin-left: 0
+
 
 .footer
     background-color: $icon
@@ -181,9 +184,9 @@ pre
     border-radius: $sep
     white-space: pre-wrap
 
-
     code
         background-color: transparent
+        padding: 0
 
 // standalone text
 
@@ -195,19 +198,17 @@ a
     color: inherit
 
     text-decoration: None
-    // border-bottom: $hair solid $pop
+    border-bottom: $hair solid $pop
 
-    background-image: linear-gradient(90deg, $pop 0%, $pop 100%)
+    background-image: linear-gradient(0deg, $pop 0%, $pop 100%)
     background-repeat: no-repeat
-    background-size: 100% 2px
-    background-position: 0px 100%
-    transition: background-size 0.3s ease, color 0.5s ease
+    background-size: 100% 0
+    background-position: 0 100%
+    transition: background-size 0.2s ease, color 0.2s ease
 
     &:hover, &:active, &:focus
-        border-color: $pop
         color: $icon
         background-size: 100% 100%
-
 
 code
     font-family: $c
@@ -218,6 +219,8 @@ code
 
 li
     font-size: inherit
+    margin-left: $chunk
+    // padding-left: $chunk
 
 // images
 img
