@@ -137,8 +137,8 @@ def parse(path_list, env):
     path = env.project_path
     folders, end = path_list[:-1], path_list[-1]
 
-    base_path = fuzz_path(path, folders, env.vignore)
-    full_path = fuzz_files(base_path, end, env.vignore)
+    base_path = PageToPath(folders)()
+    full_path = PageToPath(path_list)()
 
     sections = list_folders(env.vignore, base_path)
     relatives = list(map(lambda x: find_difference(path, join(base_path, x)), sections))
