@@ -10,42 +10,45 @@ from m2r import convert as rst
 from fuzzywuzzy import fuzz as f
 import unicodedata
 
-def simplify(string):
-    """string: a str object"""
-    return unicodedata.normalize('NFKD', string).encode('ascii', 'ignore').lower()
+def simplify(string): return unicodedata.normalize('NFKD', string).encode('ascii', 'ignore').lower()
 
 def find_difference(base_path, addition):
     common = os.path.commonpath([base_path, addition])
     relative = addition[len(common):]
     return "/" if relative == "" else relative
 
+# TODO: fix the .veritableignore code in list_folders/files
+
 def list_folders(vignore, path):
     # get all folders
     folders = [x for x in os.listdir(path) if os.path.isdir(join(path, x))]
-    folders = list(filter(lambda x: False if vignore(join(path, x)) else True, folders))
-    folders = list(filter(lambda x: False if x == "src" else True, folders))
+    # folders = list(filter(lambda x: False if vignore(join(path, x)) else True, folders))
+    folders = list(filter(lambda x: False if x == "src" or x[0] == "." else True, folders))
     return folders
 
 def list_files(vignore, path):
     # get all folders
     # remove hidden files
     files = [x for x in os.listdir(path) if os.path.isfile(join(path, x))]
-    files = list(filter(lambda x: False if vignore(join(path, x)) else True, files))
-    print(f"\n\n\n\n\n\n{files}\n\n\n\n\n\n")
+    # files = list(filter(lambda x: False if vignore(join(path, x)) else True, files))
+    files = list(filter(lambda x: False if x[0] == "." else True, files))
     return files
 
-def fuzz(path, addition, child_rule=(lambda path: os.listdir(path)), min_sim=90):
+def fuzz(vignore, path, addition, child_rule=(lambda path: os.listdir(path)), min_sim=90):
     """
     path: a path-like object
     addition: a folder or file name
+    child_rule: function that lists the name of all children given a path
+    min_sim: minimum similarity of paths
+    returns:
     """
     # find all children in directory and filter out some children.
     # get the score for each child
     # find the best score
     # find the child with the closest name
     # make sure child name isn't too different from desired name
-    children = child_rule(path)
-    print(children)
+    children = child_rule(vignore, path)
+
     scores = [f.ratio(simplify(addition), simplify(child)) for child in children]
     best = max(scores)
     best_child = children[scores.index(best)]
@@ -55,13 +58,14 @@ def fuzz(path, addition, child_rule=(lambda path: os.listdir(path)), min_sim=90)
     # return the full path to the child
     return join(path, best_child)
 
-list_all = lambda x: list_folders(x) + list_folders(x)
+list_all = lambda vignore, x: list_folders(vignore, x) + list_folders(vignore, x)
 
-def fuzz_path(path, additions):
+def fuzz_path(vignore, path, additions):
     # handle corner cases
     if len(additions) == 0: return path
     if len(additions) == 1:
         return fuzz(
+            vignore,
             path,
             additions[0],
             child_rule=list_all,
@@ -71,12 +75,14 @@ def fuzz_path(path, additions):
 
     for folder in folders:
         path = join(path, fuzz(
+        vignore,
             path,
             folder,
             child_rule=list_folders,
             min_sim=90))
 
     path = join(path, fuzz(
+        vignore,
         path,
         file,
         child_rule=list_all,
@@ -136,13 +142,14 @@ def render_file(env, sections, full_path):
     )
 
 def parse(path_list, env):
+    if path_list[0] == "": path_list = []
     path = env.project_path
-    folders, end = path_list[:-1], path_list[-1]
 
-    full_path = fuzz_path(path, path_list)
+    full_path = fuzz_path(env.vignore, path, path_list)
     base_path = os.path.split(full_path)[0]
 
-    # print(f"\n\n\n\n\n\n{path, path_list, full_path}\n\n\n\n\n\n")
+    print(full_path)
+    print(base_path)
 
     sections = list_folders(env.vignore, base_path)
     relatives = list(map(lambda x: find_difference(path, join(base_path, x)), sections))
