@@ -2,5 +2,3 @@
 # right now, all directories/files that start with a '.' are hidden.
 
 .*
-src/
-!src/*
