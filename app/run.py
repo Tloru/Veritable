@@ -1,18 +1,11 @@
 from . import *
 
-import os
-
 import flask
 from flask import Flask
 
 def run(args):
-    # checking args
     assert len(args) == 0
-
-    # setting up env
     env = auto_env()
-
-    #starting the flask app
     app = Flask(__name__)
 
     @app.route('/index')
@@ -27,12 +20,9 @@ def run(args):
 
     @app.route('/src/<path:path>')
     def src(path):
+        nonlocal env
         path = path.split("/")
-        folders, end = path[:-1], path[-1]
-
-        base_path = fuzz_path(join(env.project_path, "src"), folders, env.vignore)
-        full_path = fuzz_files(base_path, end, env.vignore)
-
+        full_path = fuzz_path(env.project_path, "src")
         return flask.send_file(full_path)
 
     app.run(debug=True)

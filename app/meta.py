@@ -1,6 +1,5 @@
 from . import *
 
-import os
 from sass import compile as sass
 
 def meta(args):

@@ -60,7 +60,6 @@ def auto_env():
 def configure(args):
     assert len(args) == 1
     variable = args[0]
-
     env = auto_env()
 
     valid_variables = [
@@ -69,8 +68,6 @@ def configure(args):
         "DESCRIPTION"
     ]
     assert variable in valid_variables
-
-    env = auto_env()
 
     print("{} is already configured as '{}'".format(variable, env.get_config(variable)))
     if input("Would you like to change this? (y/n): ") == "y":

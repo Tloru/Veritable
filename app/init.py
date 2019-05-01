@@ -12,3 +12,5 @@ def init(args):
     project_path = join(os.getcwd(), path)
 
     copy_tree(join(veritable_path, "base"), project_path)
+
+    print("Successfully Created Veritable Project!")

@@ -55,6 +55,8 @@ def fuzz(path, addition, child_rule=(lambda path: os.listdir(path)), min_sim=90)
     # return the full path to the child
     return join(path, best_child)
 
+list_all = lambda x: list_folders(x) + list_folders(x)
+
 def fuzz_path(path, additions):
     # handle corner cases
     if len(additions) == 0: return path
@@ -62,11 +64,8 @@ def fuzz_path(path, additions):
         return fuzz(
             path,
             additions[0],
-            child_rule=
+            child_rule=list_all,
             min_sim=0)
-
-    def list_all(path):
-        return lambda x: list_folders(x) + list_folders(x)
 
     folders, file = additions[:-1], additions[-1]
 
@@ -80,7 +79,7 @@ def fuzz_path(path, additions):
     path = join(path, fuzz(
         path,
         file,
-        child_rule=list_files,
+        child_rule=list_all,
         min_sim=0))
 
     return path
