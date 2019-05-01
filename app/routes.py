@@ -7,7 +7,7 @@ import flask
 from mistune import markdown as md
 from m2r import convert as rst
 
-from fuzzywuzzy import fuzz
+from fuzzywuzzy import fuzz as f
 import unicodedata
 
 def simplify(string):
@@ -22,65 +22,68 @@ def find_difference(base_path, addition):
 def list_folders(vignore, path):
     # get all folders
     folders = [x for x in os.listdir(path) if os.path.isdir(join(path, x))]
-    folders = list(filter(vignore, folders))
+    folders = list(filter(lambda x: False if vignore(join(path, x)) else True, folders))
     folders = list(filter(lambda x: False if x == "src" else True, folders))
-
     return folders
 
 def list_files(vignore, path):
     # get all folders
     # remove hidden files
     files = [x for x in os.listdir(path) if os.path.isfile(join(path, x))]
-    files = list(filter(vignore, files))
-
+    files = list(filter(lambda x: False if vignore(join(path, x)) else True, files))
+    print(f"\n\n\n\n\n\n{files}\n\n\n\n\n\n")
     return files
 
-def find_closest(target, samples):
-    scores = list(map(lambda x: fuzz.ratio(target, x), samples))
-    return max(zip(scores, samples), key=lambda x: x[0])
+def fuzz(path, addition, child_rule=(lambda path: os.listdir(path)), min_sim=90):
+    """
+    path: a path-like object
+    addition: a folder or file name
+    """
+    # find all children in directory and filter out some children.
+    # get the score for each child
+    # find the best score
+    # find the child with the closest name
+    # make sure child name isn't too different from desired name
+    children = child_rule(path)
+    print(children)
+    scores = [f.ratio(simplify(addition), simplify(child)) for child in children]
+    best = max(scores)
+    best_child = children[scores.index(best)]
+    print(best, best_child, addition)
+    assert best >= min_sim
 
-def fuzz_path(path, folders, vignore):
+    # return the full path to the child
+    return join(path, best_child)
+
+def fuzz_path(path, additions):
+    # handle corner cases
+    if len(additions) == 0: return path
+    if len(additions) == 1:
+        return fuzz(
+            path,
+            additions[0],
+            child_rule=
+            min_sim=0)
+
+    def list_all(path):
+        return lambda x: list_folders(x) + list_folders(x)
+
+    folders, file = additions[:-1], additions[-1]
+
     for folder in folders:
-        contents = list_folders(vignore, path)
-        contents = dict(zip(map(simplify, contents), contents))
+        path = join(path, fuzz(
+            path,
+            folder,
+            child_rule=list_folders,
+            min_sim=90))
 
-        score, name = find_closest(simplify(folder), contents.keys())
-        assert score >= 90
-
-        path = join(path, contents[name])
+    path = join(path, fuzz(
+        path,
+        file,
+        child_rule=list_files,
+        min_sim=0))
 
     return path
-
-def fuzz_files(path, end, vignore):
-    if not os.path.exists(join(path, end)):
-        files = list_files(vignore, path)
-        folders = list_folders(vignore, path)
-
-        files = dict(zip(map(simplify, files), files))
-        folders = dict(zip(map(simplify, folders), folders))
-
-        assert len(folders) != 0 or len(files) != 0
-
-        file_score = 0
-        folder_score = 0
-
-        if len(files) != 0:
-            file_score, file  = find_closest(end, files.keys())
-            file = files[file]
-            end = file
-
-        if len(folders) != 0:
-            folder_score, folder = find_closest(end, folders.keys())
-            end = folder
-            folder = folders[folder]
-
-        if len(folders) != 0 and len(files) != 0:
-            score, end = max([(file_score, file), (folder_score, folder)], key=lambda x: x[0])
-
-        # make sure url isn't too far off from expected file
-        # assert max([file_score, folder_score]) > 60
-
-    return join(path, end)
 
 def render_folder(env, sections, path, full_path):
     files = list_files(env.vignore, full_path)
@@ -137,8 +140,10 @@ def parse(path_list, env):
     path = env.project_path
     folders, end = path_list[:-1], path_list[-1]
 
-    base_path = fuzz_path(path, folders, env.vignore)
-    full_path = fuzz_files(base_path, end, env.vignore)
+    full_path = fuzz_path(path, path_list)
+    base_path = os.path.split(full_path)[0]
+
+    # print(f"\n\n\n\n\n\n{path, path_list, full_path}\n\n\n\n\n\n")
 
     sections = list_folders(env.vignore, base_path)
     relatives = list(map(lambda x: find_difference(path, join(base_path, x)), sections))
