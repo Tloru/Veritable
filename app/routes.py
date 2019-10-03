@@ -148,9 +148,6 @@ def parse(path_list, env):
     full_path = fuzz_path(env.vignore, path, path_list)
     base_path = os.path.split(full_path)[0]
 
-    print(full_path)
-    print(base_path)
-
     sections = list_folders(env.vignore, base_path)
     relatives = list(map(lambda x: find_difference(path, join(base_path, x)), sections))
     sections = list(zip(relatives, sections))

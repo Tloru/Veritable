@@ -11,13 +11,13 @@ commands = {
     "init": app.init,
     "run": app.run,
     "configure": app.configure,
-    "meta": app.meta
+    "meta": app.meta,
 }
 
 # this LOC tho
 command = commands[command.command]
 
-# TODO: When viewing a file make is show other folders 
+# TODO: When viewing a file make is show other folders
 # TODO: make the back button able to go back to the root
 # TODO: make it so that static files work
 # TODO: add docstrings
